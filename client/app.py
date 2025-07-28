@@ -1,5 +1,8 @@
 import gradio as gr
 import requests
+from PIL import Image
+import io
+import base64
 
 API_ENDPOINTS = {
     "Horus": "http://127.0.0.1:8000/generate",
@@ -48,10 +51,14 @@ with gr.Blocks(css="""
 
     # Selector de modelo
     model_selector = gr.Dropdown(
-        choices=["Horus", "Isis"],
-        value="Horus",
-        label="Modelo"
+        choices=[
+            "Horus 🏃 Faster post generation",
+            "Isis 🧠 Advanced reasoning"
+        ],
+        value="Horus 🏃 Faster post generation",
+        label="Model"
     )
+
 
     # Ajustes toggle
     show_settings = gr.State(value=False)
@@ -137,6 +144,40 @@ with gr.Blocks(css="""
         lines=6,
         show_copy_button=True
     )
+    # --- Generador de imágenes con Stability AI ---
+    gr.Markdown("### 🎨 Image generator")
+
+    image_prompt = gr.Textbox(
+        label="Describe the image you want to generate",
+        placeholder="Example: A financial robot on the stock market",
+        lines=2
+    )
+
+    generate_image_btn = gr.Button("🪄 Generate image")
+    image_output = gr.Image(label="Generated image", type="pil")
+
+    def generate_image_ui(prompt):
+        print(f"[DEBUG] Prompt received: {prompt}")
+        try:
+            response = requests.post("http://127.0.0.1:8000/generate-image", json={"prompt": prompt})
+            response.raise_for_status()
+
+            image_base64 = response.json()["output"]
+
+            # Decodificar base64 a bytes
+            image_bytes = base64.b64decode(image_base64)
+
+            # Convertir bytes a imagen PIL
+            image = Image.open(io.BytesIO(image_bytes))
+            print("[DEBUG] Image generated and converted successfully")
+            return image
+
+        except Exception as e:
+            print(f"[ERROR] Error generating image: {e}")
+            return None
+    # Conectar el botón de generación de imagen con la función
+    generate_image_btn.click(fn=generate_image_ui, inputs=image_prompt, outputs=image_output)
+
 
     # Siempre que cambie last_response, se actualiza la caja
     def show_response(text):
