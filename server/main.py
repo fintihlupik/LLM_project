@@ -10,6 +10,8 @@ from server.agents.finance_agent import run_agent
 from server.tools.get_market_news import get_market_news
 from server.tools.get_market_yahoo import get_market_yahoo
 import json
+from server.tools.generate_image import generate_image  #generate image
+
 
 
 
@@ -102,3 +104,14 @@ async def get_yahoo_market_news(data: MarketNewsRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+# crear imagen
+class ImageRequest(BaseModel):
+    prompt: str
+
+@app.post("/generate-image", response_model=ResponseOutput)
+async def generate_image_endpoint(data: ImageRequest):
+    try:
+        image_b64 = generate_image(data.prompt)
+        return ResponseOutput(output=image_b64)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
