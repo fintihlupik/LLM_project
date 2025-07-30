@@ -318,8 +318,9 @@ img {
     def generate_image_ui(prompt):
         print(f"[DEBUG] Prompt received: {prompt}")
         try:
-            response = requests.post("http://127.0.0.1:8000/images/generate", json={"prompt": prompt})
+            response = requests.post(f"{BASE_URL}/images/generate", json={"prompt": prompt})
             response.raise_for_status()
+
 
             # Convertir bytes directamente a imagen PIL
             image = Image.open(io.BytesIO(response.content))
