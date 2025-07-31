@@ -61,6 +61,7 @@ Supports dynamic content adaptation for multiple languages and cultural nuances,
 ## 📎 Useful links
 
 - Medium Article
+  
 https://medium.com/@yaelparrac/engineering-an-ai-that-thinks-in-economics-narrates-in-markets-and-communicates-in-human-context-4ca0180ca8f0
   
 - Documentation
