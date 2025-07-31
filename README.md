@@ -4,7 +4,7 @@
 <h1 align="center">LLM project</h1>
 
 <p align="center">
-  Agents for content generators • Dockerized • FastAPI + Gradio + Chroma DB
+  Financial agent for content generators • Dockerized • FastAPI + Gradio + Chroma DB
 </p>
 
 ---
@@ -14,8 +14,8 @@
 - [📌 Project Overview](#-project-overview)
 - [📎 Useful links](#-useful-links)
 - [🎯 Target Audience](#-target-audience)
-- [⚙️ Features & Limitations](#️-features--limitations)
-- [🚀 Future Improvements](#-future-improvements)
+- [⚙️ General Project Overview](#️-general-project-overview)
+- [🚀 Future features & Implementations](#-future-features--implementations)
 - [🛠️ Tools & Technologies](#-tools--technologies)
 - [🧪 Model Architecture](#-model-architecture)
 - [📁 Project Structure](#-project-structure)
@@ -26,40 +26,44 @@
 
 ## 📌 Project Overview
 
-<p align="justify">
-  
-**FinancIA** combines advanced language models with a simple interface, allowing users, journalists, and content creators to create clear, accurate, and up-to-date content on the economy, investments, cryptocurrencies, and more.
-This solution seeks to streamline the creation of financial content, maintaining accessible language without losing rigor, and adapting to different formats such as blogs, social media, and newsletters.
+<p align="justify">  
+
+**FinancIA** is project is a modular financial AI assistant backend built with FastAPI and Gradio. It leverages a Chroma vector database for efficient semantic search and integrates multiple APIs, including Groq for language modeling and Stability AI for image generation. The system features specialized agents handling stock market data retrieval, academic research via arXiv and PDF processing, and general knowledge queries.
+
+Content generation adapts to multilingual and cultural nuances using libraries like spaCy, KeyBERT, Rake, DeepTranslator, and langdetect. The architecture is designed for extensibility, supporting financial educational content tailored by platform, language, and user demographics. Containerized with Docker, it separates frontend and backend deployments for scalability and maintainability.
+
 
 ## The platform supports:
 
 - ### 📝 Dynamic Content Generation  
-  Generate customized textual content for multiple social media platforms including **Instagram**, **Twitter**, and **LinkedIn**, all from a simple prompt.
+  Generate tailored educational content focused on finance for multiple social media platforms such as Instagram, Twitter, and LinkedIn. Content adapts by age group, language, regional dialects, and platform behavior to maximize relevance and engagement.
 
-- ### 💼 Advanced Financial Agent  
-  An intelligent agent specialized in **finance**, offering expert-level analysis and reasoning to assist with complex financial topics.
+- ### 💼 Specialized Financial Agent
+  An agent with four distinct strategies (Yahoo Finance, standard queries, simple RAG, and combined approach) delivering expert-level financial insights and contextual reasoning.
 
-- ### 📚 Retrieval-Augmented Generation (RAG)  
-  Answer complex questions using information retrieved from a specialized **knowledge base**, including support for **PDF documents**, ensuring context-rich and well-grounded responses.
+- ### 📚 Retrieval-Augmented Generation (RAG) with Academic Focus
+  Perform deep, context-aware responses by retrieving and indexing economic research papers (PDFs from arXiv) in Chroma. Uses keyword extraction (KeyBERT, Rake, spaCy), translation (DeepTranslator), and LM prompting for rich, grounded answers.
 
 - ### 📈 Real-Time Financial Data Analysis  
-  Seamless integration with **Yahoo Finance** to access and analyze real-time market data, enabling the creation of content that reflects the **latest financial trends**.
+  Integrates Yahoo Finance API to extract detailed technical data, company summaries, and links for stocks and indices, enabling timely and accurate financial analysis
 
-- ### 🎨 AI-Powered Image Generation  
-  Transform textual descriptions into **unique AI-generated images**, providing impactful **visual support** for your content.
+- ### 🎨 AI-Powered Image Creation  
+  Converts text prompts into photorealistic images using Stability AI, enhancing visual storytelling for financial content.
 
 - ### 🎯 Audience Segmentation  
   Tailor content to specific **demographics** — including **age group**, **language**, and **geographical region** — to maximize **relevance** and **engagement**.
+
+
+- ### 🌎 Multilingual and Culturally Aware Content Segmentation
+Supports dynamic content adaptation for multiple languages and cultural nuances, improving user engagement across demographics.
 
 ---
 ## 📎 Useful links
 
 - WebSite
 
-
   
 - Documentation
-  
   
   
 - Presentation
@@ -75,103 +79,86 @@ This solution seeks to streamline the creation of financial content, maintaining
 
 ---
 
-## ⚙️ Features & Limitations
+## 🔧 General Project Overview
 
-### ✅ Features
-<br>
+### Features
+- FastAPI-based backend with modular structure
+- Gradio frontend for demo/testing
+- Multi-agent design for finance-related tasks
+- ChromaDB for local vector search
+- Prompt engineering tailored to platform, age, language, and cultural context
+- Fully containerized (backend/frontend split)
+- NLP pipeline using KeyBERT, RAKE, spaCy, and langdetect
+- Multilingual translation via DeepTranslator (Google)
+- Stable Diffusion API integration for realistic image generation
 
-**🧠 Multi-Model Architecture**
 
-  This project integrates several AI models and services, each optimized for specific tasks, to deliver intelligent, personalized, and dynamic content generation.
-  
-  **🤖 Core Models**
-  
-  - **🦅 Horus**
-      A model optimized for fast content generation, designed to quickly produce high-quality textual outputs.
-  
-  - **💼 Isis**
-      An advanced reasoning agent specialized in finance, capable of understanding complex economic data and producing insightful financial content.
-<br>
+| ✅ Pros                                                             | ❌ Cons                                                                             |
+|----------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| Modular and clean backend design                                     | No persistent Chroma store (in-memory or local, not shared)                         |
+| Covers diverse use cases: stock data, research, content, images      | No UI interactivity beyond Gradio input box                                         |
+| Agents are task-specific and clearly isolated                        | No authentication, session tracking, or user history                                |
+| Uses lightweight and fast vector store (Chroma)                      | Manual setup for spaCy/NLTK models (not auto-downloaded on build)                   |
+| Multilingual and culturally adaptive content generation              | No monitoring, logging, or rate limiting                                            |
 
-**🔍 Retrieval-Augmented Generation (RAG)**
-
-  - **📚 RAG with ChromaDB**
-    Implements a retrieval-augmented generation pipeline using ChromaDB (a vector database).
-    This allows the system to:
-
-    - Search relevant documents in real time
-
-    - Enrich model responses with specific and updated information
-<br>
-
-**👥 Advanced Audience Segmentation**
-
-  - **🎯 Personalized Content Generation**
-    Automatically adapts output based on:
-
-    - Age group
-
-    - Target platform (Instagram, Twitter, LinkedIn)
-
-    - Region or language
-
-✅ Ensures every message is audience-aware, platform-specific, and contextually relevant.
-
-<br>
-
-**🖼️ Integrated Image Generator**
-
-  - **🎨 Text-to-Image Capability**
-    
-    Includes a tool to generate images from text descriptions, likely powered by Stability AI or similar services, supporting the visual needs of generated content.
-<br>
-
-**🌐 External Data Integrations**
-
-  - **📈 Yahoo Finance**
-    
-    Real-time financial data retrieval via Yahoo Finance API to support economic analysis and market updates.
-
-  - **📄 PDF Processing**
-    
-    Ability to extract text and knowledge from PDF documents, enhancing the system's internal data sources.
-<br>
-
-**⚙️ Modular & Scalable API**
-
-  - **🧩 REST API Design**
-    The backend is organized into modular routes:
-
-    - `/content`
-
-    - `/agent`
-
-    - `/query`
-
-    - `/image`
-      
-      This architecture allows for easy maintenance and scalable feature integration.
-<br>
-
-**⚡ Fast Inference Engine**
-
-  - **🚀 Groq API Integration**
-    
-    Supports ultra-fast language model inference using the Groq API, improving model response times and overall performance..
-<br>
-
-### ⚠️ Limitations
-
-- The technology used for the frontend (Gradio) limits us in its design.
-- The time to develop the project was short
 
 ---
 
-## 🚀 Future Improvements
+## 🌐 Routes & Agents
 
-- Expand the database with more pdfs
-- Add **more languages** to our app
-- improvements in the frontend
+### Features
+- `/query`: GROQ LM general-purpose agent
+- `/yahoo`: Market data with historical and technical info from Yahoo Finance
+- `/agent`: RAG search from Chroma (local knowledge base)
+- `/content`: Academic agent using Arxiv and document-based RAG
+- `/image`: Realistic image generation via Stability API
+
+
+| ✅ Pros                                                                    | ❌ Cons                                                            |
+|----------------------------------------------------------------------------|---------------------------------------------------------------------|
+| Well-separated routes and logic per use case                               | GROQ agent is single-shot, lacks conversation memory                |
+| Custom agent strategies: Yahoo, RAG, RAG+Arxiv, GROQ                       | No centralized prompt logging or feedback loop                      |
+| Combined keyphrase extraction and translation pipeline for better recall   | Agents are manually selected; not dynamically adaptive              |
+| Arxiv-based academic search supports real PDF embedding and indexing)      | Image generation has no style/theme configuration)                  |
+
+
+
+---
+
+## 🧠 Architecture & Services
+
+### Features
+- `services/`: Core business logic, prompt construction, LM connectors
+- `tools/`: Scripts and helpers for PDF fetching, Yahoo parsing, post generation
+- `utils/query_depth`: Automatically switches between shallow and deep agents
+- `prompts/`: Modular prompt base by platform, age, language, region
+- `agents/finance_agent.py`: Unified agent with strategy dispatching
+
+| ✅ Pros                                                       | ❌ Cons                                                                        |
+|---------------------------------------------------------------|---------------------------------------------------------------------------------|
+| Clear separation between tools, services, and routes          | Prompt design is heuristic; not optimized via real user feedback                |
+| Prompt builder is extensible and adaptable                    | No lifecycle management of vector store data (aging, deduplication, tagging)    |
+| Query depth analysis introduces contextual strategy control   | Static agent strategy selection; lacks metrics or LLM guidance                  |
+| Prompt modularity enables wide reuse across agents            |                                                                                  |
+
+
+
+---
+
+## 🚀 Future Features & Implementations
+
+### Planned Improvements
+- Add user-facing frontend with search history, filters, and summaries
+- Implement agent registry system for pluggable strategy injection
+- Add monitoring, logging, and error tracing for observability
+- Switch to persistent Chroma (Postgres or S3-backed)
+- Integrate memory or context chaining for conversational agents
+- Use semantic scoring or retrieval confidence to refine RAG
+- Automate download and build of required NLP models (spaCy/NLTK)
+- Enable image generation prompts with template presets or styles
+- Add multilingual UI for internationalization support
+- Create scheduled background tasks (e.g. RSS feeds, economic updates)
+
 
 ---
 
@@ -180,31 +167,52 @@ This solution seeks to streamline the creation of financial content, maintaining
 ### ⚙️ Backend
 
 ![FastAPI](https://img.shields.io/badge/-FastAPI-009688?logo=fastapi&logoColor=white)
-![Python](https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white)
-![Uvicorn](https://img.shields.io/badge/-Uvicorn-6E4C1E)
-![LangChain](https://img.shields.io/badge/-LangChain-92C63D)
-![Pydantic](https://img.shields.io/badge/-Pydantic-09A3D5)
-![Loguru](https://img.shields.io/badge/-Loguru-FFFFFF)
+![Pydantic](https://img.shields.io/badge/-Pydantic-3c77ff?logo=pydantic&logoColor=white)
+![Uvicorn](https://img.shields.io/badge/-Uvicorn-000000?logo=uvicorn&logoColor=white)
+![Starlette](https://img.shields.io/badge/-Starlette-1f61a0?logo=starlette&logoColor=white)
 
-### 🧠 Models
+- Python async stack: `aiohttp`, `httpx`, `anyio`, `async-timeout`
+- API routing & services: `FastAPI`, `Starlette`, `Uvicorn`
+- Data validation & configuration: `pydantic`, `pydantic-settings`, `dataclasses-json`
 
-![SentenceTransformers](https://img.shields.io/badge/-SentenceTransformers-6A1B9A)
-![Groq](https://img.shields.io/badge/-Groq-09A3D5)
-![langchainOllama](https://img.shields.io/badge/-langchainOllama-646CFF)
+### 🤖 LLM & NLP Stack
 
-### 🌐 Frontend
+![LangChain](https://img.shields.io/badge/-LangChain-2f2f2f?logo=langchain&logoColor=white)
+![SpaCy](https://img.shields.io/badge/-SpaCy-09a3d5?logo=spacy&logoColor=white)
+![Transformers](https://img.shields.io/badge/-Transformers-ffcc00?logo=huggingface&logoColor=black)
+![HuggingFace](https://img.shields.io/badge/-HuggingFace-D04D20?logo=huggingface&logoColor=white)
 
-![Gradio](https://img.shields.io/badge/-Gradio-61DAFB)
-![Pillow (PIL)](https://img.shields.io/badge/-Pillow-06B6D4)
+- LangChain ecosystem: `langchain`, `langchain-core`, `langchain-community`, `langchain-chroma`, `langchain-text-splitters`, `langchain-ollama`, `langchain-groq`
+- Multilingual models: `spaCy`, `en-core-web-sm`, `es-core-news-sm`, `fr-core-news-sm`
+- Embedding & tokenization: `transformers`, `tiktoken`, `tokenizers`, `sentence-transformers`, `sentencepiece`
+- NLP utilities: `nltk`, `deep-translator`, `langdetect`, `keybert`, `rake-nltk`
 
+### 📦 Vector Database & Data Processing
 
-### 🧱 Database & Infrastructure
+![ChromaDB](https://img.shields.io/badge/-ChromaDB-ffffff?logo=vector&logoColor=black)
+![Pandas](https://img.shields.io/badge/-Pandas-150458?logo=pandas&logoColor=white)
+![SQLite](https://img.shields.io/badge/-SQLite-003B57?logo=sqlite&logoColor=white)
 
-![ChromaDB](https://img.shields.io/badge/-ChromaDB-3ECF8E)
-![RAG](https://img.shields.io/badge/-RAG-6A1B9A)
-![Docker](https://img.shields.io/badge/-Docker-2496ED?logo=docker&logoColor=white)
-![Yfinance](https://img.shields.io/badge/-Yfinance-FFFFFF)
-![Pypdf](https://img.shields.io/badge/-Pypdf-0078D4)
+- Vector storage: `chromadb`, `pypika`, `peewee`
+- Data manipulation: `pandas`, `numpy`, `scikit-learn`, `scipy`
+- PDF and document processing: `pypdf`, `rake-nltk`, `pdf_fetcher`
+
+### 🌐 Web UI & Interfaces
+
+![Gradio](https://img.shields.io/badge/-Gradio-3d75c7?logo=gradio&logoColor=white)
+
+- Frontend interface: `gradio`, `gradio-client`
+- Async communication: `httpx-sse`, `safehttpx`
+
+### 🐳 DevOps & Utilities
+
+![Docker](https://img.shields.io/badge/-Docker-2496ed?logo=docker&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/-CI/CD-2088FF?logo=githubactions&logoColor=white)
+![Dotenv](https://img.shields.io/badge/-dotenv-47736C?logo=python&logoColor=white)
+
+- Containers & orchestration: `docker-compose`, `Dockerfile.backend`, `Dockerfile.frontend`
+- Environment management: `.env`, `python-dotenv`
+- Logging & monitoring: `loguru`, `coloredlogs`, `opentelemetry-*`, `posthog`
 
 ---
 
@@ -217,47 +225,32 @@ This solution seeks to streamline the creation of financial content, maintaining
 </p>
 
 ## 📁 Project Structure
-📦 Proyecto  
-├── 📝 README.md  
-├── 📁 client   
-│   ├── 🐍 \_\_init\_\_.py  
-│   └── 🚀 app.py  
-├── 📄 requirements.txt  
-├── 📁 server  
-│   ├── 📁 agents  
-│   │   ├── 🐍 \_\_init\_\_.py  
-│   │   └── 🤖 finance_agent.py  
-│   ├── 📁 database  
-│   │   ├── 📁 chroma_data/  
-│   │   ├── 🗃️ chroma_db.py  
-│   │   ├── 📁 data_pdfs/  
-│   │   ├── 🧹 delete_from_db.py  
-│   │   └── 🔍 inspect_db.py  
-│   ├── 🚀 main.py  
-│   ├── 📁 prompts  
-│   │   ├── 📁 age_groups/  
-│   │   ├── 📄 base.txt  
-│   │   ├── 📁 dialects/  
-│   │   ├── 📁 languages/  
-│   │   └── 📁 platforms/  
-│   ├── 📁 routes  
-│   │   ├── 🧠 agent.py  
-│   │   ├── ✍️ content.py  
-│   │   ├── 🖼️ image.py  
-│   │   ├── ❓ query.py  
-│   │   └── 📈 yahoo.py  
-│   ├── 📁 services  
-│   │   ├── 🤖 lm_engine.py  
-│   │   ├── 🧩 prompt_builder.py  
-│   │   └── 🔍 query_engine.py  
-│   ├── 📁 tools  
-│   │   ├── 🖼️ generate_image.py  
-│   │   ├── ✍️ generate_post.py  
-│   │   ├── 📄 pdf_fetcher.py  
-│   │   └── 📈 yahoo_data.py  
-│   └── 📁 utils  
-│       └── 📏 query_depth.py  
 
+```
+📦 LLM_PROJECT  
+├── 📁 client                  # Gradio frontend interface  
+├── 📁 data                  
+│   └── 📁 chroma_db          # Vector database storage  
+├── 📁 server                 # Backend FastAPI application  
+│   ├── 📁 agents             # Agent implementations (e.g., financial)  
+│   ├── 📁 database           # DB management scripts and raw data  
+│   ├── 📁 prompts            # Prompt templates organized by domain  
+│   ├── 📁 routes             # API route definitions  
+│   ├── 📁 services           # Core LLM and prompt handling logic  
+│   ├── 📁 tools              # PDF/image/Yahoo tools  
+│   └── 📁 utils              # Helper utilities   
+│   ├── main.py                # Entrypoint to FastAPI app  
+│
+├── README.md                # Project overview  
+├── requirements.txt         # Python dependencies  
+├── .env                     # Environment variables (not tracked by Git)  
+├── .gitignore               # Git ignore rules  
+├── .dockerignore            # Docker ignore rules  
+├── docker-compose.yml       # Docker orchestration  
+├── Dockerfile.backend       # Docker build config for backend  
+├── Dockerfile.frontend      # Docker build config for frontend  
+
+```
 ---
 
 ## ✍ Deployment Instructions
@@ -267,44 +260,14 @@ This solution seeks to streamline the creation of financial content, maintaining
 Before you begin, make sure you have:
 
     Python 3.10
-
-    pip
-
-    Git (optional but recommended)
-
-    Ollama if using local models (e.g., LLaMA2, Mistral)
-
-    (Optional) Virtualenv for managing virtual environments
+    Docker Desktop
 
 🧪 1. Clone the repository
 
     git clone https://github.com/your-username/your-repo.git
     cd your-repo
 
-🐍 2. Create and activate a virtual environment (optional but recommended)
-
-    python -m venv venv
-    source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-📦 3. Install dependencies
-
-    pip install --upgrade pip
-    pip install -r requirements.txt
-
-🧠 4. Download required models (SpaCy, Ollama, etc.)
-For SpaCy:
-
-    python -m spacy download en_core_web_sm
-
-If using Ollama models:
-
-Make sure you have Ollama installed and running.
-
-Example to load LLaMA 3:
-
-    ollama run llama3
-
-🔐 5. Configure environment variables
+🔐 2. Configure environment variables
 
 Create a .env file in the project root and add your variables (e.g.):
 
@@ -313,32 +276,17 @@ Create a .env file in the project root and add your variables (e.g.):
     
     # Stability AI API Key for image generation
     STABILITY_API_KEY="YOUR_STABILITY_API_KEY"
+    
+📦 3. Docker
 
-▶️ 6. Start the backend server
+    # Open Desktop Docker
+    docker compose build
+    docker compose up
 
-From the root directory, run:
-
-    uvicorn server.main:app --reload
-
-This will launch the FastAPI server at http://localhost:8000.
-
-💻 7. Run the client (if applicable)
-
-If you're using a Gradio or custom client, run:
-
-    python client/app.py
-
-📂 Expected folder structure
-
-You can include a visual representation of your folder structure (already done with icons earlier 👍).
-✅ Verify it's working
-
-Open your browser and visit:
-
-    Interactive API docs: http://localhost:8000/docs
-
-    Gradio client (if used): http://localhost:7860/
-
+    # To check if everything is going well
+    Docker ps
+    
+    # To access to the front and back, you only have to click on the links you will see on the terminal
 
 
 ---
@@ -349,7 +297,7 @@ Feel free to explore, fork, or connect with us for ideas, feedback, or collabora
 
 | Name                  | GitHub                                                                                                                   | LinkedIn                                                                                                                                             |
 |-----------------------|--------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Yael Parra**         | [![GitHub](https://img.shields.io/badge/GitHub-c4302b?logo=github&logoColor=white)](https://github.com/Yael-Parra)      | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yael-parra/)                |
-| **Polina Terekhova Pavlova**    | [![GitHub](https://img.shields.io/badge/GitHub-c4302b?logo=github&logoColor=white)](https://github.com/fintihlupik)            | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/polina-terekhova-pavlova/)               |
-| **Mariela Adimari**  | [![GitHub](https://img.shields.io/badge/GitHub-c4302b?logo=github&logoColor=white)](https://github.com/marie-adi)     | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mariela-adimari/)             |
-| **Abigail Masapanta Romero**        | [![GitHub](https://img.shields.io/badge/GitHub-c4302b?logo=github&logoColor=white)](https://github.com/abbyenredes)       | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abigail-masapanta-romero/)                   |
+| **Yael Parra**        | [![GitHub](https://img.shields.io/badge/GitHub-10b981?logo=github&logoColor=white)](https://github.com/Yael-Parra)       | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yael-parra/)                   |
+| **Polina Terekhova Pavlova**    | [![GitHub](https://img.shields.io/badge/GitHub-10b981?logo=github&logoColor=white)](https://github.com/fintihlupik)  | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/polina-terekhova-pavlova/)   |
+| **Mariela Adimari**  | [![GitHub](https://img.shields.io/badge/GitHub-10b981?logo=github&logoColor=white)](https://github.com/marie-adi)           | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mariela-adimari/)             |
+| **Abigail Masapanta Romero**        | [![GitHub](https://img.shields.io/badge/GitHub-10b981?logo=github&logoColor=white)](https://github.com/abbyenredes)  | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abigail-masapanta-romero/)    |
