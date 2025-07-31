@@ -66,6 +66,7 @@ https://medium.com/@yaelparrac/engineering-an-ai-that-thinks-in-economics-narrat
   
 - Documentation
   
+https://deepwiki.com/Yael-Parra/Finance_LLM_Project
   
 - Presentation
   
