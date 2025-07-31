@@ -70,7 +70,7 @@ https://deepwiki.com/Yael-Parra/Finance_LLM_Project
   
 - Presentation
   
-  https://www.canva.com/design/DAGt-gyFBvA/4lWmKpnn3wpufBr-Bo2log/edit?utm_content=DAGt-gyFBvA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+https://www.canva.com/design/DAGt-gyFBvA/4lWmKpnn3wpufBr-Bo2log/edit?utm_content=DAGt-gyFBvA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 ---
 
 ## 🎯 Target Audience
