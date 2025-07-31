@@ -20,7 +20,7 @@
 - [🧪 Model Architecture](#-model-architecture)
 - [📁 Project Structure](#-project-structure)
 - [✍ Deployment Instructions](#-deployment-instructions)
-- [👩💻 Contributors](#-contributors)
+- [👩 Contributors](#-contributors)
 
 ---
 
