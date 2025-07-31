@@ -139,7 +139,7 @@ Supports dynamic content adaptation for multiple languages and cultural nuances,
 | Clear separation between tools, services, and routes          | Prompt design is heuristic; not optimized via real user feedback                |
 | Prompt builder is extensible and adaptable                    | No lifecycle management of vector store data (aging, deduplication, tagging)    |
 | Query depth analysis introduces contextual strategy control   | Static agent strategy selection; lacks metrics or LLM guidance                  |
-| Prompt modularity enables wide reuse across agents            |                                                                                  |
+| Prompt modularity enables wide reuse across agents            |                                                                                 |
 
 
 
@@ -221,8 +221,9 @@ Supports dynamic content adaptation for multiple languages and cultural nuances,
 
 
 <p align="center">
-  <img src="" alt="Diagrama de Arquitectura del Sistema" width="700"/>
+  <img src="https://github.com/fintihlupik/LLM_project/blob/main/img/diagram.png?raw=true" alt="System Architecture Diagram" width="700"/>
 </p>
+
 
 ## 📁 Project Structure
 
@@ -295,9 +296,9 @@ We are AI students with a heart and passion for building better solutions for re
 Feel free to explore, fork, or connect with us for ideas, feedback, or collaborations.
 
 
-| Name                  | GitHub                                                                                                                   | LinkedIn                                                                                                                                             |
-|-----------------------|--------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Yael Parra**        | [![GitHub](https://img.shields.io/badge/GitHub-10b981?logo=github&logoColor=white)](https://github.com/Yael-Parra)       | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yael-parra/)                   |
-| **Polina Terekhova Pavlova**    | [![GitHub](https://img.shields.io/badge/GitHub-10b981?logo=github&logoColor=white)](https://github.com/fintihlupik)  | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/polina-terekhova-pavlova/)   |
-| **Mariela Adimari**  | [![GitHub](https://img.shields.io/badge/GitHub-10b981?logo=github&logoColor=white)](https://github.com/marie-adi)           | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mariela-adimari/)             |
-| **Abigail Masapanta Romero**        | [![GitHub](https://img.shields.io/badge/GitHub-10b981?logo=github&logoColor=white)](https://github.com/abbyenredes)  | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abigail-masapanta-romero/)    |
+| Name                  | GitHub                                                                                                                     | LinkedIn                                                                                                                                             |
+|-----------------------|----------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Yael Parra**        | [![GitHub](https://img.shields.io/badge/GitHub-10b981?logo=github&logoColor=white)](https://github.com/Yael-Parra)         | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yael-parra/)                   |
+| **Polina Terekhova Pavlova** | [![GitHub](https://img.shields.io/badge/GitHub-10b981?logo=github&logoColor=white)](https://github.com/fintihlupik) | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/polina-terekhova-pavlova/)     |
+| **Mariela Adimari**   | [![GitHub](https://img.shields.io/badge/GitHub-10b981?logo=github&logoColor=white)](https://github.com/marie-adi)          | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mariela-adimari/)              |
+| **Abigail Masapanta Romero**  | [![GitHub](https://img.shields.io/badge/GitHub-10b981?logo=github&logoColor=white)](https://github.com/abbyenredes)| [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abigail-masapanta-romero/)     |
